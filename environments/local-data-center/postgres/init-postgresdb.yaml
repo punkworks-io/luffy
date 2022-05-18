@@ -1,0 +1,23 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: init-postgresdb
+spec:
+  template:
+    metadata:
+      name: init-postgresdb
+      labels:
+        app: init-postgresdb
+    spec:
+      containers:
+        - image: "docker.io/bitnami/postgresql:11.5.0-debian-9-r60"
+          name: init-postgresdb
+          command: ["bin/sh", "-c", "psql postgresql://postgres:shoparazzi@local-data-center-postgresql:5432/admin -a -f /shoparazzi/init/init-postgresdb.sql"]
+          volumeMounts:
+            - name: init-postgresdb
+              mountPath: /shoparazzi/init
+      volumes:
+        - name: init-postgresdb
+          configMap:
+            name: init-postgresdb.sql
+      restartPolicy: OnFailure

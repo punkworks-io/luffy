@@ -1,0 +1,23 @@
+heimdall:
+  image:
+    repository: ghcr.io/shoparazzi/heimdall
+    pullPolicy: IfNotPresent
+    tag: "2.1.6"
+
+  imagePullSecrets:
+    - name: luffy-ghcr-read-only-pat
+
+  service:
+    type: NodePort
+    port: 8080
+    annotations:
+      cloud.google.com/neg: '{"ingress": true}'
+
+
+  ingress:
+    enabled: true
+    className: ""
+    domain_name: ""
+    static_ip_address_name: ""
+    annotations:
+      kubernetes.io/ingress.allow-http: "false"

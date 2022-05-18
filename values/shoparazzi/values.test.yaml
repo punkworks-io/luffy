@@ -1,0 +1,20 @@
+heimdall:
+  envSecret: heimdall-test-env-secret
+  envConfigMap: heimdall-test-env-config-map
+
+  image:
+    tag: "2.1.6"
+
+  ingress:
+    enabled: true
+    className: ""
+    domain_name: "auth.test-shoparazzi.club"
+    static_ip_address_name: "shoparazzi-test-identity-ext-ip"
+    hosts:
+      - host: "auth.test-shoparazzi.club"
+        paths:
+          - path: "/*"
+            pathType: ImplementationSpecific
+
+global:
+  shoparazziNamespace: test

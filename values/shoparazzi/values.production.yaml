@@ -1,0 +1,22 @@
+heimdall:
+  envSecret: heimdall-production-env-secret
+  envConfigMap: heimdall-production-env-config-map
+
+  image:
+    tag: "2.1.6"
+
+  replicaCount: 2
+
+  ingress:
+    enabled: true
+    className: ""
+    domain_name: "auth.shoparazzi.club"
+    static_ip_address_name: "shoparazzi-production-identity-ext-ip"
+    hosts:
+      - host: "auth.shoparazzi.club"
+        paths:
+          - path: "/*"
+            pathType: ImplementationSpecific
+
+global:
+  shoparazziNamespace: production

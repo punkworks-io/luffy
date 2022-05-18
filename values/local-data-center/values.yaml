@@ -1,0 +1,5 @@
+postgresql:
+  postgresqlPassword: shoparazzi
+  postgresqlDatabase: admin
+  service:
+    type: ClusterIP

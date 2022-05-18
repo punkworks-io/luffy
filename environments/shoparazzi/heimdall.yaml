@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: heimdall-local-env-config-map
+data:
+  # Need the below properties for HA mode
+  # JGROUPS_DISCOVERY_PROTOCOL: kubernetes.KUBE_PING
+  # JGROUPS_DISCOVERY_PROPERTIES: port_range=0,dump_requests=true
+  # PROXY_ADDRESS_FORWARDING: "true"
+  KUBERNETES_NAMESPACE: local
+  KEYCLOAK_LOGLEVEL: INFO
+  ROOT_LOGLEVEL: INFO
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: heimdall-local-env-secret
+  annotations:
+    kubernetes.io/service-account.name: "shoparazzi-hiemdall"
+type: Opaque
+data:
+  KEYCLOAK_USER: aGVpbWRhbGw= # heimdall
+  KEYCLOAK_PASSWORD: aGVpbWRhbGw= # heimdall
+  DB_VENDOR: UE9TVEdSRVM= # POSTGRES
+  DB_SCHEMA: cHVibGlj # public
+  DB_ADDR: bG9jYWwtZGF0YS1jZW50ZXItcG9zdGdyZXNxbA== # local-data-center-postgresql
+  DB_DATABASE: aGVpbWRhbGw= # heimdall
+  DB_USER: aGVpbWRhbGw= # heimdall
+  DB_PASSWORD: aGVpbWRhbGw= # heimdall

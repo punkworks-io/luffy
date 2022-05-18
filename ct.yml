@@ -1,0 +1,6 @@
+# chart-testing config file
+# see https://github.com/helm/chart-testing
+
+lint-conf: .yamllint
+validate-maintainers: false
+debug: true

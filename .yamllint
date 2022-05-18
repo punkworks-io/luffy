@@ -1,0 +1,16 @@
+extends: default
+
+# don't check unrendered helm templates
+ignore: |
+  **/templates
+rules:
+  line-length:
+    max: 120
+    level: warning
+  document-start:
+    present: false
+  octal-values:
+    forbid-implicit-octal: true
+  truthy:
+    level: error
+    check-keys: false

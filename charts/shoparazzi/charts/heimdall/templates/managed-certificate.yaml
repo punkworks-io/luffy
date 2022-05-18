@@ -1,0 +1,13 @@
+{{- if .Values.ingress.enabled -}}
+
+{{- $fullName := include "heimdall.fullname" . -}}
+
+apiVersion: networking.gke.io/v1beta1
+kind: ManagedCertificate
+metadata:
+  name: {{ $fullName }}
+spec:
+  domains:
+    - {{ .Values.ingress.domain_name }}
+
+{{- end }}

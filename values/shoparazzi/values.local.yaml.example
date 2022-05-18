@@ -1,0 +1,16 @@
+heimdall:
+  envSecret: heimdall-local-env-secret
+  envConfigMap: heimdall-local-env-config-map
+
+  imagePullSecrets:
+    - name: ghcr-read-only-pat
+  image:
+    tag: "2.1.6"
+
+  service:
+    type: NodePort
+    port: 8080
+
+
+global:
+  shoparazziNamespace: local

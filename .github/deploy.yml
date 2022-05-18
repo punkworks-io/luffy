@@ -1,0 +1,43 @@
+# Canary release using track=canary. Release a few pods that will be served by
+# the stable chart service.
+canary:
+  production_environment: true
+  required_contexts: []
+  environment: production
+  description: "Canary Deployment"
+  payload:
+    value_files: ["./values/shoparazzi/values.common.yml", "./values/shoparazzi/values.production.yaml", "./values/shoparazzi/values.canary.yaml"]
+    release: production-shoparazzi
+    namespace: production
+    track: canary
+
+# Deployment to a production environment is kicked off manually. This actually
+# runs two deployment, one is to remove the canary pods if it exists and the
+# other deploys to production.
+production:
+  production_environment: true
+  required_contexts: []
+  environment: production
+  description: "Production Deployment"
+  payload:
+    value_files: ["./values/shoparazzi/values.common.yaml", "./values/shoparazzi/values.production.yaml"]
+    # Remove the canary deployment if it exists when doing a full prod deploy.
+    remove_canary: true
+    release: production-shoparazzi
+    namespace: production
+    track: stable
+    helm: helm3
+
+
+test:
+  auto_deploy_on: refs/heads/test
+  required_contexts: []
+  environment: test
+  description: "Test deployment"
+  payload:
+    value_files: ["./values/shoparazzi/values.common.yaml", "./values/shoparazzi/values.test.yaml"]
+    remove_canary: true
+    release: test-shoparazzi
+    namespace: test
+    track: stable
+    helm: helm3

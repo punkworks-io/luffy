@@ -1,0 +1,6 @@
+dependencies:
+- name: heimdall
+  repository: ""
+  version: 0.1.0
+digest: sha256:44e76a40267eb4289be97da387cf3095f448017af7aa2506f24ed35c724d5b02
+generated: "2021-10-08T19:04:05.8537481+05:30"

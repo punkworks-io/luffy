@@ -1,0 +1,3 @@
+CREATE USER heimdall WITH PASSWORD 'heimdall';
+CREATE DATABASE heimdall;
+GRANT ALL PRIVILEGES ON DATABASE heimdall to heimdall;
